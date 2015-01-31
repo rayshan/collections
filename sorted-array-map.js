@@ -4,8 +4,8 @@ var SortedArraySet = require("./sorted-array-set");
 var GenericCollection = require("./generic-collection");
 var GenericMap = require("./generic-map");
 var ObservableObject = require("./observable-object");
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
 var addEach = require("./operators/add-each");
 
 module.exports = SortedArrayMap;

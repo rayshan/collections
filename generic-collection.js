@@ -1,8 +1,8 @@
 "use strict";
 
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
-var cloneOperator = require("./operators/clone");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
+var cloneOperator = require("pop-clone");
 
 module.exports = GenericCollection;
 function GenericCollection() {

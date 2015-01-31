@@ -7,7 +7,7 @@ var ObservableRange = require("./observable-range");
 var ObservableObject = require("./observable-object");
 var Iterator = require("./iterator");
 var addEach = require("./operators/add-each");
-var equalsOperator = require("./operators/equals");
+var equalsOperator = require("pop-equals");
 
 // by Petka Antonov
 // https://github.com/petkaantonov/deque/blob/master/js/deque.js

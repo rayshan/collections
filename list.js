@@ -7,8 +7,7 @@ var GenericOrder = require("./generic-order");
 var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
 var Iterator = require("./iterator");
-var equalsOperator = require("./operators/equals");
-var noop = require("./operators/noop");
+var equalsOperator = require("pop-equals");
 var addEach = require("./operators/add-each");
 
 function List(values, equals, getDefault) {
@@ -450,4 +449,6 @@ Node.prototype.addAfter = function (node) {
     next.prev = node;
     node.prev = this;
 };
+
+function noop() {}
 

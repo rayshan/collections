@@ -7,8 +7,8 @@ var GenericCollection = require("./generic-collection");
 var GenericSet = require("./generic-set");
 var ObservableRange = require("./observable-range");
 var ObservableObject = require("./observable-object");
-var equalsOperator = require("./operators/equals");
-var hashOperator = require("./operators/hash");
+var equalsOperator = require("pop-equals");
+var hashOperator = require("pop-hash");
 var addEach = require("./operators/add-each");
 
 module.exports = LfuSet;

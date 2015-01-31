@@ -2,7 +2,7 @@
   "name": "collections",
   "version": "2.0.1",
   "publishConfig": {
-      "tag": "future"
+    "tag": "future"
   },
   "description": "data structures with idiomatic JavaScript collection interfaces",
   "homepage": "http://github.com/montagejs/collections",
@@ -31,6 +31,14 @@
     "url": "http://github.com/montagejs/collections.git"
   },
   "dependencies": {
+    "mini-map": "^1.0.0",
+    "pop-clone": "^1.0.0",
+    "pop-compare": "^1.0.0",
+    "pop-equals": "^1.0.0",
+    "pop-hash": "^1.0.0",
+    "pop-iterate": "^1.0.0",
+    "pop-swap": "^1.0.0",
+    "regexp-escape": "0.0.1",
     "weak-map": "^1.0.4"
   },
   "devDependencies": {

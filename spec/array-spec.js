@@ -32,7 +32,7 @@ describe("Array", function () {
     };
     var fakeArray = new FakeArray();
 
-    // should have been almost completely tested by Object.equals and
+    // should have been almost completely tested by equals and
     // describeOrder
 
     // get does not work the same way as most other ordered collections.  it

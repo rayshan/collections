@@ -11,6 +11,8 @@ var sinon = require("sinon");
 var extendSpyExpectation = require("./spy-expectation");
 require("../shim");
 var Dict = require("../dict");
+var equalsOperator = require("pop-equals");
+var cloneOperator = require("pop-clone");
 
 describe("Object", function () {
 
@@ -361,7 +363,7 @@ describe("Object", function () {
         // its equivalence class
         equivalenceClasses.forEach(function (equivalenceClass) {
             Object.forEach(equivalenceClass, function (a, ai) {
-                equivalenceClass[ai + " clone"] = Object.clone(a);
+                equivalenceClass[ai + " clone"] = cloneOperator(a);
             });
             // within each pair of class, test exhaustive combinations to cover
             // the commutative property
@@ -369,7 +371,7 @@ describe("Object", function () {
                 describe(ai, function () {
                     Object.forEach(equivalenceClass, function (b, bi) {
                         it("equals " + bi, function () {
-                            expect(Object.equals(a, b)).toBe(true);
+                            expect(equalsOperator(a, b)).toBe(true);
                             //expect(a).toEqual(b);
                         });
                     });
@@ -393,7 +395,7 @@ describe("Object", function () {
                 Object.forEach(aClass, function (a, ai) {
                     Object.forEach(bClass, function (b, bi) {
                         it(ai + " not equals " + bi, function () {
-                            expect(Object.equals(a, b)).toBe(false);
+                            expect(equalsOperator(a, b)).toBe(false);
                         });
                     });
                 });
@@ -403,13 +405,13 @@ describe("Object", function () {
         it("recognizes deep structural similarity", function () {
             var a = [];
             a.push(a);
-            expect(Object.equals(a, [[a]])).toBe(true);
+            expect(equalsOperator(a, [[a]])).toBe(true);
         });
 
         it("recognizes deep structural dissimilarity", function () {
             function Foo() {}
             var foo = new Foo();
-            expect(Object.equals(
+            expect(equalsOperator(
                 [foo],
                 [[[foo]]]
             )).toBe(false);
@@ -524,23 +526,23 @@ describe("Object", function () {
 
         Object.forEach(graph, function (value, name) {
             it(name + " cloned equals self", function () {
-                expect(Object.clone(value)).toEqual(value);
+                expect(cloneOperator(value)).toEqual(value);
             });
         });
 
         it("should clone zero levels of depth", function () {
-            var clone = Object.clone(graph, 0);
+            var clone = cloneOperator(graph, 0);
             expect(clone).toBe(graph);
         });
 
         it("should clone object at one level of depth", function () {
-            var clone = Object.clone(graph, 1);
+            var clone = cloneOperator(graph, 1);
             expect(clone).toEqual(graph);
             expect(clone).not.toBe(graph);
         });
 
         it("should clone object at two levels of depth", function () {
-            var clone = Object.clone(graph, 2);
+            var clone = cloneOperator(graph, 2);
             expect(clone).toEqual(graph);
             expect(clone.object).not.toBe(graph.object);
             expect(clone.object).toEqual(graph.object);
@@ -548,30 +550,30 @@ describe("Object", function () {
         });
 
         it("should clone array at two levels of depth", function () {
-            var clone = Object.clone(graph, 2);
+            var clone = cloneOperator(graph, 2);
             expect(clone).toEqual(graph);
         });
 
         it("should clone identical values at least once", function () {
-            var clone = Object.clone(graph);
+            var clone = cloneOperator(graph);
             expect(clone.cycle).not.toBe(graph.cycle);
         });
 
         it("should clone identical values only once", function () {
-            var clone = Object.clone(graph);
+            var clone = cloneOperator(graph);
             expect(clone.cycle).toBe(clone);
         });
 
         it("should clone clonable", function () {
-            var clone = Object.clone(graph);
+            var clone = cloneOperator(graph);
             expect(clone.clonable).toBe(graph.clonable);
         });
 
         it("should clone an object with a function property", function () {
             var original = {foo: function () {}};
-            var clone = Object.clone(original);
+            var clone = cloneOperator(original);
             expect(clone.foo).toBe(original.foo);
-            expect(Object.equals(clone, original)).toBe(true);
+            expect(equalsOperator(clone, original)).toBe(true);
         });
 
     });
@@ -580,18 +582,18 @@ describe("Object", function () {
         var object = {a: {a1: 10, a2: 20}, b: {b1: 10, b2: 20}};
 
         it("should clone zero levels", function () {
-            expect(Object.clone(object, 0)).toBe(object);
+            expect(cloneOperator(object, 0)).toBe(object);
         });
 
         it("should clone one level", function () {
-            var clone = Object.clone(object, 1);
+            var clone = cloneOperator(object, 1);
             expect(clone).toEqual(object);
             expect(clone).not.toBe(object);
             expect(clone.a).toBe(object.a);
         });
 
         it("should clone two levels", function () {
-            var clone = Object.clone(object, 2);
+            var clone = cloneOperator(object, 2);
             expect(clone).toEqual(object);
             expect(clone).not.toBe(object);
             expect(clone.a).not.toBe(object.a);
@@ -600,7 +602,7 @@ describe("Object", function () {
         it("should clone with reference cycles", function () {
             var cycle = {};
             cycle.cycle = cycle;
-            var clone = Object.clone(cycle);
+            var clone = cloneOperator(cycle);
             expect(clone).toEqual(cycle);
             expect(clone).not.toBe(cycle);
             expect(clone.cycle).toBe(clone);

@@ -40,14 +40,7 @@ Dict.prototype.constructClone = function (values) {
     return new this.constructor(values, this.mangle, this.getDefault);
 };
 
-Dict.prototype.assertString = function (key) {
-    if (typeof key !== "string") {
-        throw new TypeError("key must be a string but Got " + key);
-    }
-}
-
 Dict.prototype.get = function (key, defaultValue) {
-    this.assertString(key);
     var mangled = mangle(key);
     if (mangled in this.store) {
         return this.store[mangled];
@@ -59,7 +52,6 @@ Dict.prototype.get = function (key, defaultValue) {
 };
 
 Dict.prototype.set = function (key, value) {
-    this.assertString(key);
     var mangled = mangle(key);
     var from;
     if (mangled in this.store) { // update
@@ -86,13 +78,11 @@ Dict.prototype.set = function (key, value) {
 };
 
 Dict.prototype.has = function (key) {
-    this.assertString(key);
     var mangled = mangle(key);
     return mangled in this.store;
 };
 
 Dict.prototype["delete"] = function (key) {
-    this.assertString(key);
     var mangled = mangle(key);
     var from;
     if (mangled in this.store) {

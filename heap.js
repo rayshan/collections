@@ -7,8 +7,8 @@ var GenericCollection = require("./generic-collection");
 var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
 var ObservableMap = require("./observable-map");
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
 var addEach = require("./operators/add-each");
 
 // Max Heap by default.  Comparison can be reversed to produce a Min Heap.

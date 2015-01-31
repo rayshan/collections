@@ -6,9 +6,8 @@ var GenericCollection = require("./generic-collection");
 var GenericSet = require("./generic-set");
 var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
-var equalsOperator = require("./operators/equals");
-var hashOperator = require("./operators/hash");
-var noop = require("./operators/noop");
+var equalsOperator = require("pop-equals");
+var hashOperator = require("pop-hash");
 var addEach = require("./operators/add-each");
 
 module.exports = Set;
@@ -174,4 +173,6 @@ Set.prototype.makeRangeChangesObservable = function () {
     this.order.makeRangeChangesObservable();
     ObservableRange.prototype.makeRangeChangesObservable.call(this);
 };
+
+function noop() {}
 

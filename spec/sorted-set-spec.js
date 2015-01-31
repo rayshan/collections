@@ -1,5 +1,4 @@
 
-require("../shim-array");
 var SortedSet = require("../sorted-set");
 var TreeLog = require("../tree-log");
 var describeDeque = require("./deque");

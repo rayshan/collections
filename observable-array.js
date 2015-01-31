@@ -13,7 +13,6 @@
  * necessary for any collection with observable content.
  */
 
-require("./shim-array");
 var WeakMap = require("weak-map");
 
 var observedLengthForObject = new WeakMap();
@@ -22,7 +21,7 @@ var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
 var ObservableMap = require("./observable-map");
 
-var array_swap = require("./operators/swap");
+var array_swap = require("pop-swap/swap");
 var array_splice = Array.prototype.splice;
 var array_slice = Array.prototype.slice;
 var array_reverse = Array.prototype.reverse;

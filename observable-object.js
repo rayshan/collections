@@ -8,8 +8,6 @@
 // change dispatch. The internal records should not be corrupt, but observers
 // might miss an intermediate property change.
 
-require("./shim-array");
-require("./shim-object");
 var WeakMap = require("weak-map");
 
 var observersByObject = new WeakMap();

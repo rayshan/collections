@@ -8,8 +8,8 @@ var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
 var Iterator = require("./iterator");
 var TreeLog = require("./tree-log");
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
 var addEach = require("./operators/add-each");
 
 function SortedSet(values, equals, compare, getDefault) {

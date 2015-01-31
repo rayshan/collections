@@ -6,9 +6,8 @@ var GenericCollection = require("./generic-collection");
 var ObservableObject = require("./observable-object");
 var ObservableRange = require("./observable-range");
 var Iterator = require("./iterator");
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
-var noop = require("./operators/noop");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
 var addEach = require("./operators/add-each");
 
 function SortedArray(values, equals, compare, getDefault) {
@@ -276,4 +275,6 @@ SortedArray.prototype.iterate = function (start, stop, step) {
 };
 
 SortedArray.prototype.Iterator = Iterator;
+
+function noop() {}
 

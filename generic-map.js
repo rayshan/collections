@@ -3,8 +3,8 @@
 var ObservableMap = require("./observable-map");
 var ObservableObject = require("./observable-object");
 var Iterator = require("./iterator");
-var equalsOperator = require("./operators/equals");
-var compareOperator = require("./operators/compare");
+var equalsOperator = require("pop-equals");
+var compareOperator = require("pop-compare");
 var addEach = require("./operators/add-each");
 
 module.exports = GenericMap;

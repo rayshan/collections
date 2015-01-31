@@ -2,7 +2,7 @@
 
 var WeakMap = require("weak-map");
 var Operators = require("./operators");
-var hash = require("./operators/hash");
+var hash = require("pop-hash");
 
 module.exports = Object;
 
@@ -44,13 +44,13 @@ Object.isObject = function (object) {
     implement <code>valueOf</code>.
 
     <p>Note that, unlike the precedent of methods like
-    <code>Object.equals</code> and <code>Object.compare</code> would suggest,
+    <code>equals</code> and <code>Object.compare</code> would suggest,
     this method is named <code>Object.getValueOf</code> instead of
     <code>valueOf</code>.  This is a delicate issue, but the basis of this
     decision is that the JavaScript runtime would be far more likely to
     accidentally call this method with no arguments, assuming that it would
     return the value of <code>Object</code> itself in various situations,
-    whereas <code>Object.equals(Object, null)</code> protects against this case
+    whereas <code>equals(Object, null)</code> protects against this case
     by noting that <code>Object</code> owns the <code>equals</code> property
     and therefore does not delegate to it.
 
@@ -65,8 +65,6 @@ Object.getValueOf = function (value) {
     }
     return value;
 };
-
-Object.hash = hash;
 
 /**
     A shorthand for <code>Object.prototype.hasOwnProperty.call(object,
@@ -245,11 +243,7 @@ Object.from = Object.concat;
 
 Object.is = Operators.is;
 
-Object.equals = Operators.equals;
-
 Object.compare = Operators.compare;
 
 Object.clone = Operators.clone;
-
-Object.clear = require("./operators/clear");
 
